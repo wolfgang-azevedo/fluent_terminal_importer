@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSessionData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SessionData SessionId="Droplet" SessionName="Droplet" ImageKey="computer" Host="127.0.0.1" Port="22" Proto="SSH" PuttySession="Default Settings" Username="" ExtraArgs="" SPSLFileName="" />
+  <SessionData SessionId="ROUTING" SessionName="RTCORE01" ImageKey="computer" Host="127.0.0.1" Port="42421" Proto="SSH" PuttySession="routers" Username="joselito" ExtraArgs="" SPSLFileName="" />
+</ArrayOfSessionData>

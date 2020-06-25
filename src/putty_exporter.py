@@ -32,8 +32,9 @@ def reg_scanner(**kwargs):
             subkey=OpenKey(parent_key,subkey_name)
             host=QueryValueEx(subkey, "HostName")
             port=QueryValueEx(subkey, "PortNumber")
+            username=QueryValueEx(subkey, "UserName")
             
-            yield (subkey_name, host[0], port[0])
+            yield (subkey_name, host[0], port[0], username[0])
         except OSError as error:
             #print(error)
             break

@@ -2,8 +2,8 @@
 Script to import terminal Sessions from Putty, Kitty or SuperPutty to
 Fluent Terminal on Microsoft Windows.
 '''
-__author__ = "Wolfgang Azevedo"
-__email__ = "wolfgang@ildt.io"
+__author__ = "Developed by: Wolfgang Azevedo"
+__email__ = "wolgang@ildt.io"
 __license__ = "GPL"
 __version__ = "1.0"
 
@@ -23,7 +23,9 @@ try:
 except FileNotFoundError as error:
     print(f'Configuration file not found! Please check --> {error}....')
 
+
 def export_sessions(**kwargs):
+
 
     def gen_files(**kwargs):
 
@@ -34,24 +36,25 @@ def export_sessions(**kwargs):
             port = kwargs.get("values")[2]
             dest_dir = config['importer']['output_dir']
             dest_dir = f'{dest_dir}\\{source_app}'
+            tab_color = config["importer"]["tab_color"]
 
-            if source_app == 'super_putty':
-                username = kwargs.get('values')[3]
-            else:
+            if kwargs.get('values')[3] == '':
                 username = config["importer"]["username"]
+            else:
+                username = kwargs.get('values')[3]
 
             if not os.path.exists(dest_dir):
                 os.makedirs(dest_dir)
 
             path = os.path.join(dest_dir, f'{session_name}.url')
-            target = f'ssh://{username}@{hostname}:{port}/?conpty=True&buffer=True&tab=2&theme=32519543-bf94-4db6-92a1-7bcec3966c82'
+            target = f'ssh://{username}@{hostname}:{port}/?conpty=True&buffer=True&tab={tab_color}'
 
             shortcut = open(path, 'w')
             shortcut.write('[InternetShortcut]\n')
             shortcut.write('URL=%s' % target)
             shortcut.close()
 
-            print(f'Session: {kwargs.get("values")[0]} exported succesfully!')
+            print(f'Session: {kwargs.get("values")[0]}, username: {username} has been exported succesfully!')
         except OSError as error:
             print(error)
 
@@ -60,7 +63,7 @@ def export_sessions(**kwargs):
             gen_files(values=values, source=kwargs.get('source'))
 
     elif kwargs.get('source') == 'super_putty':
-        for values in super_putty_exporter.gen_shortcuts(input_file=config['importer']['source']['super_putty']['input_file'], username=kwargs.get('username')):
+        for values in super_putty_exporter.gen_shortcuts(input_file=config['importer']['source']['super_putty']['input_file']):
             gen_files(values=values, source=kwargs.get('source'))
 
 for sources in config['importer']['source']:

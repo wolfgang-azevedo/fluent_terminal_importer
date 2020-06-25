@@ -1,8 +1,8 @@
 '''
 Script to Export Windows SuperPutty terminal sessions from XML file to Windows Fluent Terminal
 '''
-__author__ = "Wolfgang Azevedo"
-__email__ = "wolfgang@ildt.io"
+__author__ = "Developed by: Wolfgang Azevedo"
+__email__ = "wolgang@ildt.io"
 __license__ = "GPL"
 __version__ = "1.0"
 
@@ -17,10 +17,6 @@ def gen_shortcuts(**kwargs):
 
         for session in root.findall('SessionData'): 
             username = session.get("Username")
-        
-            if username == '':
-                username = kwargs.get('username')
-
             session_name = session.get("SessionName")
             hostname = session.get("Host")
             port = session.get("Port")
