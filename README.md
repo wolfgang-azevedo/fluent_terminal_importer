@@ -1,6 +1,6 @@
-# Fluent Terminal Importer (Putty, Kitty and SuperPutty)
+# Fluent Terminal Importer (PuTTy, KiTTy and SuperPuTTy)
 
-This script was created to help session migration from Putty, Kitty and SuperPutty to the brand new Windows Fluent Terminal.
+This script was created to help session migration from PuTTy, KiTTy and SuperPuTTy to the brand new Windows Fluent Terminal.
 
 # Requirments
 
