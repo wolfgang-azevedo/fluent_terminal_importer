@@ -2,6 +2,8 @@
 
 This script was created to help session migration from PuTTy, KiTTy and SuperPuTTy to the brand new Windows Fluent Terminal.
 
+FluentTerminal GitHub Repository:  https://github.com/felixse/FluentTerminal
+
 # Requirments
 
 - System Requirments
