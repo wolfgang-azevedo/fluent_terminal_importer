@@ -1,0 +1,13 @@
+---
+importer:
+  output_dir: 'output' # Define the output path, default is the output folder of the script
+  max_sessions: 500 # Number of sessions to search for Putty or Kitty
+  username: jsnow # Set the default username for the session, if no username or if empty on SuperPutty
+  source: # Change chose the source and set True on enabled parameter, you can set multiples
+    putty: 
+      enabled: True
+    kitty: 
+      enabled: True
+    super_putty:
+      enabled: False
+      input_file: 'superputty_sessions.xml' # Change for your SuperPutty exported sessions XML file
