@@ -6,9 +6,9 @@ This script was created to help session migration from Putty, Kitty and SuperPut
 
 - System Requirments
 
-    - Latest Version of Microsoft Windows
-    - Python3.7+ (script was developed using Python3.8, but you can run with 3.7x)
-
+    - Latest version of Microsoft Windows
+    - Latest version of Fluent Terminal for Microsoft Windows installed
+    - Python3.7+ (script was developed using Python3.8, but you can run with 3.7x) for Microsoft Windows
 
 - Dependencies, you can run the following command:
 
