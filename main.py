@@ -10,22 +10,13 @@ __version__ = "1.0"
 import os
 import yaml
 import argparse
+import os, winshell
+from win32com.client import Dispatch
 from src import putty_exporter
 from src import super_putty_exporter
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-c", "--config", default='config.yml', help="set configuration file")
-args = parser.parse_args()
-
-try:
-    with open(args.config, 'r') as config_file:
-        config = yaml.safe_load(config_file)
-except FileNotFoundError as error:
-    print(f'Configuration file not found! Please check --> {error}....')
-
 
 def export_sessions(**kwargs):
-
 
     def gen_files(**kwargs):
 
@@ -51,7 +42,7 @@ def export_sessions(**kwargs):
 
             shortcut = open(path, 'w')
             shortcut.write('[InternetShortcut]\n')
-            shortcut.write('URL=%s' % target)
+            shortcut.write(f'URL={target}')
             shortcut.close()
 
             print(f'Session: {kwargs.get("values")[0]}, username: {username} has been exported succesfully!')
@@ -66,12 +57,25 @@ def export_sessions(**kwargs):
         for values in super_putty_exporter.gen_shortcuts(input_file=config['importer']['source']['super_putty']['input_file']):
             gen_files(values=values, source=kwargs.get('source'))
 
-for sources in config['importer']['source']:
-    if sources == 'putty' or sources == 'kitty':
-        if config['importer']['source'][sources]['enabled'] is True:
-            source = sources
-            export_sessions(source_app=source, source=source)
-    elif sources == 'super_putty':
-        if config['importer']['source'][sources]['enabled'] is True:
-            source = sources
-            export_sessions(source=source)
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-c", "--config", default='config.yml', help="set configuration file")
+    args = parser.parse_args()
+
+    try:
+        with open(args.config, 'r') as config_file:
+            config = yaml.safe_load(config_file)
+    except FileNotFoundError as error:
+        print(f'Configuration file not found! Please check --> {error}....')
+    
+    for sources in config['importer']['source']:
+        if sources == 'putty' or sources == 'kitty':
+            if config['importer']['source'][sources]['enabled'] is True:
+                source = sources
+                export_sessions(source_app=source, source=source)
+        elif sources == 'super_putty':
+            if config['importer']['source'][sources]['enabled'] is True:
+                source = sources
+                export_sessions(source=source)
